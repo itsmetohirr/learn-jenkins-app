@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         EC2_HOST = 'ec2-3-82-226-77.compute-1.amazonaws.com'
-        SSH_KEY = 'ec2-ssh-key' // Jenkins credential ID (SSH private key)
+        SSH_KEY = 'ec2-ssh-key'
         APP_DIR = '/home/ubuntu/project'
         REPO_URL = 'https://github.com/itsmetohirr/learn-jenkins-app.git'
     }
@@ -24,7 +24,5 @@ pipeline {
                 }
             }
         }
-    
-
     }
 }
