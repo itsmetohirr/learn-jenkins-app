@@ -2,22 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage("stage1") {
             steps {
-                sh 'echo "Without Docker"'
+                sh 'echo "Hey there"'
             }
         }
-
-        stage('with docker') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                }
-            }
-            steps {
-                sh 'echo "With Docker"'
-                sh 'nmp --version'
-            }
-            }
     }
 }
