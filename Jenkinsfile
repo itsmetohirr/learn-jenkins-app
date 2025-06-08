@@ -20,5 +20,13 @@ pipeline {
                 '''
             }
         }
+
+        stage('Test') {
+            steps {
+                echo 'Working Test stage'
+            }
+        }
+    
+
     }
 }
