@@ -8,9 +8,7 @@ pipeline {
         REPO_URL = 'https://github.com/itsmetohirr/learn-jenkins-app.git'
     }
 
-
-
-
+    stages {
         stage('Deploy to EC2') {
             steps {
                 sshagent (credentials: ["${SSH_KEY}"]) {
@@ -29,3 +27,4 @@ pipeline {
     
 
     }
+}
