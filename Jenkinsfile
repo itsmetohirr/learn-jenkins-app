@@ -9,26 +9,6 @@ pipeline {
     }
 
     stages {
-        stage('Install Docker on EC2 (Ubuntu)') {
-            steps {
-                sshagent (credentials: ["${SSH_KEY}"]) {
-                    sh """
-                    ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
-                        if ! command -v docker &> /dev/null; then
-                            echo "Installing Docker..."
-                            sudo apt update -y
-                            sudo apt install -y docker-ce
-                            sudo systemctl start docker
-                            sudo systemctl enable docker
-                        else
-                            echo "Docker is already installed"
-                        fi
-                    EOF
-                    """
-                }
-            }
-        }
-
         stage('Deploy to EC2') {
             steps {
                 sshagent (credentials: ["${SSH_KEY}"]) {
