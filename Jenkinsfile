@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sshagent (credentials: ["${SSH_KEY}"]) {
                     sh """
-                    ssh -o StrictHostKeyChecking=no ${EC2_HOST} << 'EOF'
+                    ssh -o StrictHostKeyChecking=no ${EC2_HOST} << EOF
                         rm -rf ${APP_DIR}
                         git clone ${REPO_URL} ${APP_DIR}
                         cd ${APP_DIR}
