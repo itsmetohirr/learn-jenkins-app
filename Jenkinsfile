@@ -71,7 +71,7 @@ EOF
                     <html>
                         <body>
                             <p>Build Status: ${BUILD_STATUS}</p>
-                            <p>Build Number: ${BUILD_NUMBER}</p>
+                            <p>Build Numberrr: ${BUILD_NUMBER}</p>
                             <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
                         </body>
                     </html>
