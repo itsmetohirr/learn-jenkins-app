@@ -46,30 +46,20 @@ pipeline {
 
     post {
         always {
-            script {
-                def status = currentBuild.currentResult
-                def duration = currentBuild.durationString
-                def buildId = env.BUILD_ID
-                def buildUrl = env.BUILD_URL
-                def jobName = env.JOB_NAME
-                def timestamp = new Date().format("yyyy-MM-dd HH:mm:ss", TimeZone.getTimeZone("UTC"))
-
-                def branch = env.GIT_BRANCH ?: "N/A"
-                def commit = env.GIT_COMMIT ?: "N/A"
-
-                def message = """
-                            📣 Jenkins Build Notification
-                            ──────────────────────────────
-                            🔖 Job:        ${jobName}
-                            🔢 Build ID:   ${buildId}
-                            🌐 URL:        ${buildUrl}
-                            🕒 Time:       ${timestamp} UTC
-                            ⏱ Duration:   ${duration}
-                            🌿 Branch:     ${branch}
-                            🔨 Commit:     ${commit}
-                            📦 Status:     ${status}
-                            """
-            }
+            emailext (
+                subject: "Pipeline Status: ${BUILD_NUMBER}",
+                body: '''
+                    <html>
+                        <body>
+                            <p>Build Status: ${BUILD_STATUS}</p>
+                            <p>Build Number: ${BUILD_NUMBER}</p>
+                            <p>Check the <a href="${BUILD_STATUS}">console output</a></p>
+                        </body>
+                    </html>
+                ''',
+                to: "itsmetohir@gmail.com",
+                from: "itsmetohir@gmail.com"
+            )
         }
     }
 }
