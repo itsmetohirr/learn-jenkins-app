@@ -56,7 +56,7 @@ pipeline {
                             <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
                         </body>
                     </html>
-                '''
+                ''',
                 to: "itsmetohir@gmail.com",
                 from: "itsmetohir@gmail.com",
                 replyTo: "itsmetohir@gmail.com",
