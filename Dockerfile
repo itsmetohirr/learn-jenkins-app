@@ -1,4 +1,4 @@
-FROM node:18-aplipe
+FROM node:18-alpine
 
 WORKDIR /root/project
 
