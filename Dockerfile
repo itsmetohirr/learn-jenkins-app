@@ -1,2 +1,11 @@
-FROM nginx:1.27-alpine
-COPY build /usr/share/nginx/html
+FROM node:18-aplipe
+
+WORKDIR /root/project
+
+COPY learn-jenkins-app .
+
+RUN npm install
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]

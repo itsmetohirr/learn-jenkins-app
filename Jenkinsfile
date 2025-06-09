@@ -18,6 +18,8 @@ pipeline {
                         git clone ${REPO_URL} ${APP_DIR}
                         cd ${APP_DIR}
                         
+                        sudo docker stop my-node-container || true
+                        sudo docker rm my-node-container || true
                         sudo docker build -t my-node-app .
                         sudo docker run -d -p 3000:3000 --name my-node-container my-node-app
                     EOF
