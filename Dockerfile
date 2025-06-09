@@ -2,7 +2,7 @@ FROM node:18-alpine
 
 WORKDIR /root/project
 
-COPY learn-jenkins-app .
+COPY . .
 
 RUN npm install
 

@@ -16,7 +16,7 @@ pipeline {
                     ssh -o StrictHostKeyChecking=no ${EC2_HOST} << 'EOF'
                         rm -rf ${APP_DIR}
                         git clone ${REPO_URL} ${APP_DIR}
-                        cd learn-jenkins-app
+                        cd ${APP_DIR}
                         
                         sudo docker stop my-node-container || true
                         sudo docker rm my-node-container || true
