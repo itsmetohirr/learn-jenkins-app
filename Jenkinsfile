@@ -48,7 +48,7 @@ pipeline {
         always {
             emailext (
                 subject: "Pipeline Status: ${BUILD_NUMBER}",
-                body: """
+                body: '''
                     <html>
                         <body>
                             <p>Build Status: ${BUILD_STATUS}</p>
@@ -56,7 +56,7 @@ pipeline {
                             <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
                         </body>
                     </html>
-                """,
+                '''
                 to: "itsmetohir@gmail.com",
                 from: "itsmetohir@gmail.com",
                 replyTo: "itsmetohir@gmail.com",
