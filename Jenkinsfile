@@ -9,6 +9,26 @@ pipeline {
     }
 
     stages {
+        stage('Install Docker on EC2 (Ubuntu)') {
+            steps {
+                sshagent (credentials: ["${SSH_KEY}"]) {
+                    sh """
+                    ssh -o StrictHostKeyChecking=no ${EC2_HOST} << 'EOF'
+                        if ! command -v docker &> /dev/null; then
+                            echo "Installing Docker..."
+                            sudo apt update -y
+                            sudo apt install -y docker.io
+                            sudo systemctl start docker
+                            sudo systemctl enable docker
+                        else
+                            echo "Docker is already installed"
+                        fi
+                    EOF
+                    """
+                }
+            }
+        }
+
         stage('Deploy to EC2') {
             steps {
                 sshagent (credentials: ["${SSH_KEY}"]) {
@@ -17,6 +37,8 @@ pipeline {
                         rm -rf ${APP_DIR}
                         git clone ${REPO_URL} ${APP_DIR}
                         cd ${APP_DIR}
+                        docker build -t my-node-app .
+                        docker run -d -p 3000:3000 --name my-node-container my-node-app
                         npm install
                         npm start
                     EOF
